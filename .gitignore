@@ -1,3 +1,16 @@
+  
+# Personal
+*.csv
+*.xlsx
+env/
+Notes/
+*README_RELEASE*
+.ipynb_checkpoints
+"unused data"/
+__pycache__/
+rsconnect/
+
+
 # History files
 .Rhistory
 .Rapp.history

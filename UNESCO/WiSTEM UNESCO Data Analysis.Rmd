@@ -1,0 +1,173 @@
+instal---
+title: "WiSTEM UNESCO"
+author: "James Welch, After iGEM Women in STEM"
+date: "5/25/2021"
+output:
+  html_document: default
+---
+# META
+[R guide](https://apiportal.uis.unesco.org/BDDS_R_Tutorial)
+
+# Package and Data Import
+```{r, results='hide'}
+library(tidyverse)
+```
+
+
+
+```{r}
+#setwd("C:/Users/James/Dropbox/iGEM/WiSTEM/UNESCO")
+
+
+inno_country <- read_csv('INNO_COUNTRY.csv',na='', col_types = 'cc')
+inno_data_nat <- read_csv('INNO_DATA_NATIONAL.csv',na='',col_types = 'ccddcc')
+inno_label <- read_csv('INNO_LABEL.csv',na='',col_types = 'cc')
+inno_meta <- read_csv('INNO_METADATA.csv',na='',col_types = 'ccdcc')
+
+sci_country <- read_csv('SCI_COUNTRY.csv',na='',col_types = 'cc')
+sci_data_nat <- read_csv('SCI_DATA_NATIONAL.csv',na='',col_types = 'ccnncc')
+sci_data_reg <- read_csv('SCI_DATA_REGIONAL.csv',na='',col_types = 'ccnncc')
+sci_label <- read_csv('SCI_LABEL.csv',na='',col_types = 'cc')
+sci_meta <- read_csv('SCI_METADATA.csv',na='',col_types = 'ccncc')
+sci_region <- read_csv('SCI_REGION.csv',na='',col_types = 'ccc')
+
+
+
+```
+
+# Understanding the information
+
+#### sci/inno_label
+- INDICATOR_ID: Indicator code
+- INDICATOR_LABEL_EN: Indicator code English label
+
+#### sci/inno_DATA_NATIONAL
+- INDICATOR_ID: Indicator code
+- COUNTRY_ID: ISO 3166-1 alpha-3 country code
+- YEAR: Year of data collection
+- VALUE: measured value
+- MAGNITUDE: metadata describing value (See below)
+- QUALIFIER: describes quality of data collection (see below)
+
+#### sci_DATA_REGIONAL
+- INDICATOR_ID: Indicator code
+- REGION_ID: General Region
+- YEAR: Year of data collection
+- VALUE: measured value
+- MAGNITUDE: metadata describing value (See below)
+- QUALIFIER: describes quality of data collection (see below)
+
+#### sci/inno_METADATA
+- INDICATOR_ID: indicator code
+- COUNTRY_ID: ISO 3166-1 alpha-3 country code
+- YEAR: year of data collection
+- TYPE: type of metadata
+- METADATA: metadata value
+
+#### sci/inno_COUNTRY
+- COUNTRY_ID: ISO 3166-1 alpha-3 country code
+- COUNTRY_NAME_EN: UNSTATS M49 STANDARD Country name
+
+#### sci_REGION
+- REGION_ID: Name (acronym) of org responsible for regional composition + ":" + region name.
+- COUNTRY_ID: ISO 3166-1 alpha-3 country code
+- COUNTRY_NAME_EN: UNSTATS M49 STANDARD Country name
+
+#### METADATA Notes:
+- INDICATOR_ID : formal definition found at [here](http://uis.unesco.org/en/glossary)
+
+#### MAGNITUDE: 
+- **NIL**: value is 0, actually empty.
+- **NA**: value is 0, not applicable 
+- **SUPP**: value is empty, suppressed by country
+- **LOWREL**: value is numeric, low reliability
+- **INCLUDED**: value is empty, included in another data point
+- **INCLUDES**: value is numeric, includes another data point
+
+#### QUALIFIER:
+- **NAT_EST**: estimate produced by country
+- **UIS_EST**: estimate produced by UNESCO
+
+
+
+
+# Helper Function to subset data by supplied values.
+```{r}
+subsetData <- function(dataset, years, countries, indicatorcodes, region = FALSE){
+  a_subset <- dataset %>% filter(.,
+    YEAR %in% years,
+    if(!region){COUNTRY_ID %in% countries
+      }else{REGION_ID %in% countries},
+    INDICATOR_ID %in% indicatorcodes
+  )
+  return(a_subset)
+}
+```
+
+
+# Main Parsing Function
+
+Takes data set choice, scale, a set of years, a set of countries, and a set of indicator codes. 
+```{r}
+easy_subset <- function(choice, scale = 'national', years, countries, indicatorcodes) {
+  choice = str_to_lower(choice)
+  scale  = str_to_lower(scale)
+  
+  data <- paste0(choice,"_data_",substr(scale,0,3))
+  
+  if(data == 'inno_data_reg'){
+    stop("INNO and REGEION is not a valid combination")
+  }
+  if(substr(scale,0,3)=='reg'){
+    region = TRUE
+  }else { region = FALSE}
+  
+  data <- subsetData(get(data),years,countries,indicatorcodes, region = region)
+
+  data <- data %>% left_join(., 
+                             get(paste0(choice,"_label")),
+                             by = 'INDICATOR_ID')
+  
+  if(scale == 'regional'){
+    data <- data %>% left_join(.,get(paste0(choice,'_region')),by='REGION_ID')
+  } else {
+    data <- data %>% left_join(.,get(paste0(choice,'_country')), by='COUNTRY_ID')
+  }
+  
+  cleaned_meta <- get(paste0(choice,'_meta')) %>% 
+                    mutate(., type_data = paste(TYPE, "_", METADATA)) %>% 
+                    group_by(., INDICATOR_ID, COUNTRY_ID, YEAR) %>% 
+                    summarise(type_data = list(type_data))
+  
+  data <- data %>% left_join(.,cleaned_meta,by=c('INDICATOR_ID', 'COUNTRY_ID', 'YEAR'))
+  
+  
+  return(data)
+
+  }
+
+```
+
+
+# Create new dataframe with filters
+```{r}
+# Use unique(data$column) to get all values.
+year_range = c(2005:2011) 
+country_range = c('USA','ARG')
+ind_code = unique(sci_label$INDICATOR_ID)
+
+filtered_data <- easy_subset(choice = 'inno',           # "inno" or "sci"
+                             scale = 'national',        # "national" or "regional"
+                             years = year_range,        # Modify Above
+                             countries = country_range, # Modify Above
+                             indicatorcodes = ind_code) # Modify Above
+
+```
+
+
+
+# Export Data
+```{r}
+write_csv(filtered_data, 'UNESCO_filtered.csv')
+```
+

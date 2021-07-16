@@ -1,0 +1,219 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={WiSTEM UNESCO},
+  pdfauthor={James Welch, iGEM Women in STEM},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{WiSTEM UNESCO}
+\author{James Welch, iGEM Women in STEM}
+\date{5/25/2021}
+
+\begin{document}
+\maketitle
+
+\hypertarget{package-and-data-import}{%
+\section{Package and Data Import}\label{package-and-data-import}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching packages --------------------------------------- tidyverse 1.3.0 --
+\end{verbatim}
+
+\begin{verbatim}
+## v ggplot2 3.3.3     v purrr   0.3.4
+## v tibble  3.1.0     v dplyr   1.0.5
+## v tidyr   1.1.3     v stringr 1.4.0
+## v readr   1.4.0     v forcats 0.5.1
+\end{verbatim}
+
+\begin{verbatim}
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{setwd}\NormalTok{(}\StringTok{"C:/Users/James/Dropbox/iGEM/WiSTEM/UNESCO"}\NormalTok{)}
+
+
+\NormalTok{inno\_country }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{\textquotesingle{}INNO\_COUNTRY.csv\textquotesingle{}}\NormalTok{,}\AttributeTok{na=}\StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{, }\AttributeTok{col\_types =} \StringTok{\textquotesingle{}cc\textquotesingle{}}\NormalTok{)}
+\NormalTok{inno\_data\_nat }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{\textquotesingle{}INNO\_DATA\_NATIONAL.csv\textquotesingle{}}\NormalTok{,}\AttributeTok{na=}\StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{,}\AttributeTok{col\_types =} \StringTok{\textquotesingle{}ccddcc\textquotesingle{}}\NormalTok{)}
+\NormalTok{inno\_label }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{\textquotesingle{}INNO\_LABEL.csv\textquotesingle{}}\NormalTok{,}\AttributeTok{na=}\StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{,}\AttributeTok{col\_types =} \StringTok{\textquotesingle{}cc\textquotesingle{}}\NormalTok{)}
+\NormalTok{inno\_meta }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{\textquotesingle{}INNO\_METADATA.csv\textquotesingle{}}\NormalTok{,}\AttributeTok{na=}\StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{,}\AttributeTok{col\_types =} \StringTok{\textquotesingle{}ccdcc\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{sci\_country }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{\textquotesingle{}SCI\_COUNTRY.csv\textquotesingle{}}\NormalTok{,}\AttributeTok{na=}\StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{,}\AttributeTok{col\_types =} \StringTok{\textquotesingle{}cc\textquotesingle{}}\NormalTok{)}
+\NormalTok{sci\_data\_nat }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{\textquotesingle{}SCI\_DATA\_NATIONAL.csv\textquotesingle{}}\NormalTok{,}\AttributeTok{na=}\StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{,}\AttributeTok{col\_types =} \StringTok{\textquotesingle{}ccnncc\textquotesingle{}}\NormalTok{)}
+\NormalTok{sci\_data\_reg }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{\textquotesingle{}SCI\_DATA\_REGIONAL.csv\textquotesingle{}}\NormalTok{,}\AttributeTok{na=}\StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{,}\AttributeTok{col\_types =} \StringTok{\textquotesingle{}ccnncc\textquotesingle{}}\NormalTok{)}
+\NormalTok{sci\_label }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{\textquotesingle{}SCI\_LABEL.csv\textquotesingle{}}\NormalTok{,}\AttributeTok{na=}\StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{,}\AttributeTok{col\_types =} \StringTok{\textquotesingle{}cc\textquotesingle{}}\NormalTok{)}
+\NormalTok{sci\_meta }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{\textquotesingle{}SCI\_METADATA.csv\textquotesingle{}}\NormalTok{,}\AttributeTok{na=}\StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{,}\AttributeTok{col\_types =} \StringTok{\textquotesingle{}ccncc\textquotesingle{}}\NormalTok{)}
+\NormalTok{sci\_region }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{\textquotesingle{}SCI\_REGION.csv\textquotesingle{}}\NormalTok{,}\AttributeTok{na=}\StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{,}\AttributeTok{col\_types =} \StringTok{\textquotesingle{}ccc\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{understanding-the-information}{%
+\section{Understanding the
+information}\label{understanding-the-information}}
+
+\hypertarget{sciinno_label}{%
+\paragraph{sci/inno\_label}\label{sciinno_label}}
+
+The label table holds the indicator column as well as it's descriptive
+value.
+
+\hypertarget{sciinno_data_national}{%
+\paragraph{sci/inno\_DATA\_NATIONAL}\label{sciinno_data_national}}
+
+INDICATOR\_ID: Indicator code COUNTRY\_ID: ISO 3166-1 alpha-3 country
+code (need to get package for this) YEAR: Year of data collection VALUE:
+measured value MAGNITUDE: metadata describing value (See below)
+QUALIFIER: describes quality of data collection (see below)
+
+\hypertarget{sci_data_regional}{%
+\paragraph{sci\_DATA\_REGIONAL}\label{sci_data_regional}}
+
+INDICATOR\_ID: Indicator code REGION\_ID: ISO 3166-1 alpha-3 country
+code (need to get package for this) YEAR: Year of data collection VALUE:
+measured value MAGNITUDE: metadata describing value (See below)
+QUALIFIER: describes quality of data collection (see below)
+
+\hypertarget{sciinno_metadata}{%
+\paragraph{sci/inno\_METADATA}\label{sciinno_metadata}}
+
+INDICATOR\_ID: indicator code COUNTRY\_ID: ISO 3166-1 alpha-3 country
+code YEAR: year of data collection TYPE: type of metadata METADATA:
+metadata value
+
+\hypertarget{sciinno_country}{%
+\paragraph{sci/inno\_COUNTRY}\label{sciinno_country}}
+
+COUNTRY\_ID: ISO 3166-1 alpha-3 country code COUNTRY\_NAME\_EN: UNSTATS
+M49 STANDARD Country name
+
+\hypertarget{sci_region}{%
+\paragraph{sci\_REGION}\label{sci_region}}
+
+REGION\_ID: Name (acronym) of org responsible for regional composition +
+``:'' + region name. COUNTRY\_ID: ISO 3166-1 alpha-3 country code
+COUNTRY\_NAME\_EN: UNSTATS M49 STANDARD Country name
+
+\hypertarget{metadata-notes}{%
+\paragraph{METADATA Notes:}\label{metadata-notes}}
+
+INDICATOR\_ID : formal definition found at
+\href{http://uis.unesco.org/en/glossary}{here}
+
+MAGNITUDE: - \textbf{NIL}: value is 0, actually empty. - \textbf{NA}:
+value is 0, not applicable - \textbf{SUPP}: value is empty, suppressed
+by country - \textbf{LOWREL}: value is numeric, low reliability -
+\textbf{INCLUDED}: value is empty, included in another data point -
+\textbf{INCLUDES}: value is numeric, includes another data point
+
+QUALIFIER: - \textbf{NAT\_EST}: estimate produced by country -
+\textbf{UIS\_EST}: estimate produced by UNESCO
+
+\end{document}
